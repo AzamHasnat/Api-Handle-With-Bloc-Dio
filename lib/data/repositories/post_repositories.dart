@@ -8,12 +8,11 @@ class PostRepository{
 
   API api = API();
 
-   fetchPost() async {
+   Future<List<PostModel>> fetchPost() async {
     try{
-      print("object");
       Response response = await api.sendRequest.get("/posts");
       List<dynamic> postMaps = response.data;
-      return postMaps.map((postMap) => PostModel.fromJson(postMap));
+      return postMaps.map((postMap) => PostModel.fromJson(postMap)).toList();
       //log(response.data.toString()); sasds
     }catch(ex){
       throw ex;
